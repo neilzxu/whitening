@@ -38,13 +38,7 @@ def main():
         return math.sqrt(sum((PIXEL_MAX - pixel[x]) ** 2 for x in range(0, image.shape[2])))
 
     whites = sorted(list(filter(lambda x: white_dist(x) < args.threshold, coords)), key=white_dist)
-    '''
-    split_idx = int(args.target / 100 * len(whites))
-    brights = whites[:split_idx]
-    darks = whites[split_idx:]
-
-    ratio = sum(map(white_dist, brights)) / sum(map(white_dist, darks)) / len(brights) * len(darks)
-    '''
+    
     for coord in whites:
         for idx in range(0, image.shape[2]):
             image[coord[0], coord[1], idx] = PIXEL_MAX
